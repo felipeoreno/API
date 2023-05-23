@@ -1,0 +1,17 @@
+{
+    "name": "felipe/api",
+    "description": "Aula 23/05 sobre API",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Felipe\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Felipe de Oliveira Renó",
+            "email": "felipereno2005@gmail.com"
+        }
+    ],
+    "require": {}
+}

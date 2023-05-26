@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'felipe/api',
+        'name' => 'felipe/api-livros',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'c6fa81b96ad5ab57eb9bdedae5e1ac0b2c21c928',
+        'reference' => 'a04a59d9779de4d6e629c71bcf765e97880724ec',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'felipe/api' => array(
+        'felipe/api-livros' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'c6fa81b96ad5ab57eb9bdedae5e1ac0b2c21c928',
+            'reference' => 'a04a59d9779de4d6e629c71bcf765e97880724ec',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

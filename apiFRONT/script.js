@@ -3,7 +3,7 @@ const tituloInput = document.querySelector('#tituloInput');
 const autorInput = document.querySelector('#autorInput');
 const anoPubInput = document.querySelector('#anoPubInput');
 const tableBody = document.querySelector('#livrosTable');
-const URL = 'http://localhost:8080/livros.php';
+const URL = 'http://localhost:8080/apiPHP/Livros.php';
 
 function carregarLivros(){
     fetch(URL, {
@@ -34,7 +34,7 @@ function carregarLivros(){
             }
         })
 }
-carregarLivros();
+
 
 function adicionarLivros(event){
     event.preventDefault;
@@ -48,9 +48,7 @@ function adicionarLivros(event){
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `
-            titulo=${encodeURIComponent(titulo)}&auto=${encodeURIComponent(autor)}&ano_publicacao=${encodeURIComponent(ano_publicacao)}
-        `
+        body: `titulo=${encodeURIComponent(titulo)}&autor=${encodeURIComponent(autor)}&ano_publicacao=${encodeURIComponent(ano_publicacao)}`
     })
         .then(response => {
             if(response.ok){

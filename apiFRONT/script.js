@@ -26,7 +26,7 @@ function carregarLivros(){
                     <td>${livro.autor}</td>
                     <td>${livro.ano_publicacao}</td>
                     <td>
-                        <button class="btn btn-secondary s" onclick="atualizarLivro(${livro.id})">Editar</button>
+                        <button data-id="${livro.id}" class="btn btn-secondary s" onclick="atualizarLivro(${livro.id})">Editar</button>
                         <button class="btn btn-secondary s" onclick="excluirLivro(${livro.id})">Excluir</button>
                     </td>
                 `
@@ -63,6 +63,47 @@ function adicionarLivros(event){
         })
 }
 
+function atualizarLivro(id){
+    const novoTitulo = prompt("Digite o novo título");
+    const novoAutor = prompt("Digite o novo autor");
+    const novoAno = prompt("Digite o novo ano");
+
+    if(novoTitulo && novoAno && novoAutor){
+        fetch(`${URL}?id=${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `titulo=${encodeURIComponent(novoTitulo)}&autor=${encodeURIComponent(novoAutor)}&ano_publicacao=${encodeURIComponent(novoAno)}`
+        })
+            .then(response => {
+                if(response.ok){
+                    carregarLivros();
+                    alert('Livro atualizado com sucesso!');
+                } else{
+                    console.error('Erro ao atualizar livro');
+                    alert('Erro ao atualizar livro');
+                }
+            })
+    }
+}
+
+function excluirLivro(id){
+    if(confirm('Deseja excluir esse livro?')){
+        fetch(`${URL}?id=${id}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if(response.ok) {
+                    carregarLivros();
+                } else{
+                    console.error('Erro ao excluir Livro');
+                    alert('Erro ao excluir Livro');
+                }
+            })
+    }
+}
+
 form.addEventListener('submit', adicionarLivros);
 
-carregarLivros();
+carregarLivros(); 

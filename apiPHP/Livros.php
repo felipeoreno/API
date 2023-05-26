@@ -46,4 +46,39 @@
             echo("Erro ao criar livro!");
         }
     }
+
+    // rota para excluir um livro
+    if($_SERVER['REQUEST_METHOD'] === 'DELETE' && isset($_GET['id'])){
+        $id = $_GET['id'];
+        $stmt = $conn->prepare("DELETE FROM livros WHERE id = :id;");
+        $stmt->bindParam(':id', $id);
+
+        if($stmt->execute()){
+            echo("Livro excluído com sucesso");
+        } else{
+            echo("Erro ao excluir Livro");
+        }
+    }
+
+    // rota para atualizar um livro existente
+    if($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_GET['id'])){
+        parse_str(file_get_contents("php://input"), $_PUT);
+
+        $id = $_GET['id'];
+        $novoTitulo = $_PUT['titulo'];
+        $novoAutor = $_PUT['autor'];
+        $novoAno = $_PUT['ano_publicacao'];
+
+        $stmt = $conn->prepare("UPDATE livros SET titulo = :titulo, autor = :autor, ano_publicacao = :ano_publicacao WHERE id = :id;");
+        $stmt->bindParam(':titulo', $novoTitulo);
+        $stmt->bindParam(':autor', $novoAutor);
+        $stmt->bindParam(':ano_publicacao', $novoAno);
+        $stmt->bindParam(':id', $id);
+
+        if($stmt->execute()){
+            echo("Livro atualizado com sucesso!");
+        } else{
+            echo("Erro ao atualizar livro");
+        }
+    }
 ?>
